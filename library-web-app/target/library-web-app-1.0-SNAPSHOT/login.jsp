@@ -1,8 +1,14 @@
-<%@ page import="models.Book" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: LENOVO
+  Date: 5/6/2021
+  Time: 12:48 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>User-Register</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
@@ -10,15 +16,17 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<%
-    Book book = (Book) request.getAttribute("book");
-%>
 <div class="container">
-    <form method="post" action="book-delete">
-        <h3>Do you want to delete this book ?</h3>
-        <input name="id" value="<%=book.getId()%>" hidden>
+    <form method="post" action="login">
+        <div class="mb-3">
+            <label for="userEmail" class="form-label">Email</label>
+            <input type="text" class="form-control" id="userEmail" name="email">
+        </div>
+        <div class="mb-3">
+            <label for="userPassword" class="form-label">Password</label>
+            <input type="text" class="form-control" id="userPassword" name="password">
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-        <a href="/library/books" class="btn btn-danger" role="button" data-bs-toggle="button">Cancel</a>
     </form>
 </div>
 </body>

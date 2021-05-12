@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
-<%@ page import="models.Book" %><%--
+<%@ page import="models.Book" %>
+<%@ page import="models.User" %><%--
   Created by IntelliJ IDEA.
   User: hamid
   Date: 03.05.21
@@ -19,8 +20,11 @@
 <body>
 <%
     List<Book> books = (List<Book>) request.getAttribute("books");
+    User user = (User) request.getAttribute("LoggedInUser");
 %>
+<h2>Welcome, <%=user.getName()%></h2>
 <div class="container">
+
     <table class="table">
         <thead>
         <tr>
@@ -35,9 +39,12 @@
             for (Book book : books) {
         %>
         <tr>
-            <td scope="row"><%=book.getName()%></td>
-            <td><%=book.getAuthor()%></td>
-            <td><%=book.getPrice()%></td>
+            <td scope="row"><%=book.getName()%>
+            </td>
+            <td><%=book.getAuthor()%>
+            </td>
+            <td><%=book.getPrice()%>
+            </td>
             <td>
                 <a href="/library/book-edit?id=<%=book.getId()%>">Edit</a>
                 <a href="/library/book-delete?id=<%=book.getId()%>">Delete</a>

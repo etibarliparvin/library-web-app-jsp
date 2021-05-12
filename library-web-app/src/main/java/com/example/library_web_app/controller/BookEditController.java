@@ -1,5 +1,6 @@
-package com.example.library_web_app;
+package com.example.library_web_app.controller;
 
+import com.example.library_web_app.util.BookUtil;
 import dao.Context;
 import dao.inter.BookDaoInter;
 import models.Book;
@@ -27,15 +28,8 @@ public class BookEditController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Integer id = Integer.valueOf(req.getParameter("id"));
-        String name = req.getParameter("name");
-        String description = req.getParameter("description");
-        String author = req.getParameter("author");
-        Double price = Double.valueOf(req.getParameter("price"));
-        Integer stockCount = Integer.valueOf(req.getParameter("stockCount"));
-
         BookDaoInter bookDaoInter = Context.getBookDao();
-        Book book = new Book(id, name, description, author, price, stockCount);
+        Book book = BookUtil.createBookFromRequest(req);
         bookDaoInter.update(book);
         resp.sendRedirect("books");
     }

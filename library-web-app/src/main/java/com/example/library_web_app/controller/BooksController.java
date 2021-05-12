@@ -1,8 +1,9 @@
-package com.example.library_web_app;
+package com.example.library_web_app.controller;
 
 import dao.Context;
 import dao.inter.BookDaoInter;
 import models.Book;
+import models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +20,8 @@ public class BooksController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         BookDaoInter bookDao = Context.getBookDao();
         List<Book> books = bookDao.findAll();
+        User user = (User) req.getSession().getAttribute("LoggedInUser");
+        req.setAttribute("LoggedInUser", user);
         req.setAttribute("books", books);
         req.getRequestDispatcher("books.jsp").forward(req, resp);
     }
